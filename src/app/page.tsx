@@ -8,7 +8,7 @@ import {
   Cpu, Microscope, Building2, Rocket, FlaskConical, BookText, Code, Settings,
   Twitter, Github, Linkedin, Mail
 } from "lucide-react";
-import { motion, useMotionValue, useSpring, useTransform, animate, useScroll, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, animate, useScroll, AnimatePresence, easeInOut } from "framer-motion";
 import Loader from "../components/Loader";
 
 // ------------------ SCROLL PROGRESS BAR ------------------
@@ -302,7 +302,7 @@ const ParticleSystem: FC = () => {
 
 // ------------------ NEW ATTRACTIVE HEADER ------------------
 const Header3D: FC = () => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
@@ -590,12 +590,12 @@ export default function DNAHeroPage() {
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: easeInOut } }
   };
 
   // For cascading text animation
   const sentence = { hidden: { opacity: 1 }, visible: { opacity: 1, transition: { staggerChildren: 0.035, delayChildren: 0.3 } } };
-  const letter = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } };
+  const letter = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeInOut } } };
   const line1 = "Precision DNA Variant";
   const line2 = "Analysis using AI";
 
@@ -604,7 +604,7 @@ export default function DNAHeroPage() {
     <AnimatePresence>
         {isLoading ? (
             <motion.div key="loader" exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-                <Loader />
+                <Loader onFinish={undefined} />
             </motion.div>
         ) : (
             <motion.div

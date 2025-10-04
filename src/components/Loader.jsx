@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import React, { useEffect, useState, Suspense, useRef, useMemo } from "react";
@@ -9,7 +10,7 @@ import * as THREE from "three";
  * Renders a swirling cloud of particles to represent a data sphere.
  */
 function DataParticles({ count = 1500 }) {
-  const pointsRef = useRef();
+  const pointsRef = useRef(null);
 
   // Generate random positions for particles in a spherical layout
   const positions = useMemo(() => {
@@ -28,6 +29,7 @@ function DataParticles({ count = 1500 }) {
   // Animate the rotation of the particle cloud
   useFrame(({ clock }) => {
     if (pointsRef.current) {
+      // @ts-ignore
       pointsRef.current.rotation.y = clock.getElapsedTime() * 0.05;
       pointsRef.current.rotation.x = clock.getElapsedTime() * 0.03;
     }
@@ -192,7 +194,7 @@ export default function Loader({ onFinish }) {
           INITIATING AI CORE...
         </h2>
         <p className="text-cyan-400 text-sm uppercase tracking-wider tabular-nums">
-          ANALYSING CAREER TRAJECTORY... {percentage}%
+          CREATING YOUR AI JOURNEY... {percentage}%
         </p>
       </div>
     </div>
