@@ -334,7 +334,7 @@ const Header3D: FC = () => {
     });
   }, [scrollY]);
   
-  const navItems = ["Home", "Features", "Pricing", "About"];
+  const navItems = ["Home", "Features", "pricing", "About"];
 
   return (
     <motion.header
@@ -376,22 +376,23 @@ const Header3D: FC = () => {
         >
           {navItems.map((item) => (
             <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
-                className="relative text-slate-200 px-4 py-2 text-sm font-medium transition-colors duration-300 hover:text-white"
-                onMouseEnter={() => setHoveredLink(item)}
-            >
-              {hoveredLink === item && (
-                  <motion.div
-                    layoutId="nav-spotlight"
-                    className="absolute inset-0 rounded-full bg-white/10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  />
-              )}
-              <span className="relative z-10">{item}</span>
-            </a>
+  key={item} 
+  href={item === "Home" ? "/" : `/${item.toLowerCase()}`} 
+  className="relative text-slate-200 px-4 py-2 text-sm font-medium transition-colors duration-300 hover:text-white"
+  onMouseEnter={() => setHoveredLink(item)}
+>
+  {hoveredLink === item && (
+    <motion.div
+      layoutId="nav-spotlight"
+      className="absolute inset-0 rounded-full bg-white/10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    />
+  )}
+  <span className="relative z-10">{item}</span>
+</a>
+
           ))}
         </nav>
         <motion.a
