@@ -204,7 +204,7 @@ const AnimatedNumber: FC<{ value: number; isPercentage?: boolean }> = ({ value, 
   useEffect(() => {
     if (!ref.current) return;
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setIsInView(true); }
+      if (entry && entry.isIntersecting) { setIsInView(true); }
     }, { threshold: 0.5 });
 
     observer.observe(ref.current);
